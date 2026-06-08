@@ -72,7 +72,7 @@ Optional<Judete> cautaJudete(String filename, List<Judete> judete){
         {
             String cautat = myReader.nextLine();
 
-            judete.stream().anyMatch(j ->
+            judete.stream().allMatch(j ->
                     Objects.equals(cautat, j.ISO.toLowerCase())
                             || Objects.equals(cautat, j.nume.toLowerCase())
                             || Objects.equals(cautat, j.regiune.toLowerCase()));
@@ -94,7 +94,7 @@ List<Judete> ordoneazaDensitatePopulatie(List<Judete> judete){
 
     });
 
-    return judete.stream().sorted().map(j -> (double)j.nrLoc/j.suprafata).toList().
+    return judete.stream().sorted(j -> j.densitate).toList();
 }
 
 void main(){
