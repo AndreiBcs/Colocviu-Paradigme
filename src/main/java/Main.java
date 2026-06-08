@@ -59,6 +59,34 @@ void scrieJudeteConsola(List<Judete> judete){
 
 }
 
+
+Optional<Judete> cautaJudete(String filename, List<Judete> judete){
+
+    Optional<Judete> gasite = Optional.empty();
+
+    File myObj = new File(filename);
+
+    try (Scanner myReader = new Scanner(myObj))
+    {
+        while (myReader.hasNextLine())
+        {
+            String cautat = myReader.nextLine();
+
+            judete.stream().anyMatch(j ->
+                    Objects.equals(cautat, j.ISO.toLowerCase())
+                            || Objects.equals(cautat, j.nume.toLowerCase())
+                            || Objects.equals(cautat, j.regiune.toLowerCase()));
+        }
+    }
+    catch (FileNotFoundException e) {
+        System.out.println("A aparut o eroare la citirea din fisier:");
+        e.printStackTrace();
+    }
+
+    return gasite;
+}
+
+
 List<Judete> ordoneazaDensitatePopulatie(List<Judete> judete){
 
     judete.forEach(j -> {
@@ -66,9 +94,7 @@ List<Judete> ordoneazaDensitatePopulatie(List<Judete> judete){
 
     });
 
-    return judete.stream().map(j -> {
-        return (double) j.nrLoc / j.suprafata;
-    }).sorted();
+    return judete.stream().sorted().map(j -> (double)j.nrLoc/j.suprafata).toList().
 }
 
 void main(){
