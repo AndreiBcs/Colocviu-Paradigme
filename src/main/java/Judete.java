@@ -16,12 +16,10 @@ public class Judete {
 
     @Override
     public String toString() {
-        return "Judete{" +
-                "ISO='" + ISO + '\'' +
+        return "ISO='" + ISO + '\'' +
                 ", nume='" + nume + '\'' +
                 ", regiune='" + regiune + '\'' +
                 ", nrLoc=" + nrLoc +
-                ", suprafata=" + suprafata +
-                '}';
+                ", suprafata=" + suprafata;
     }
 }

@@ -32,17 +32,18 @@ List<Judete> citesteJudete(String filename){
 
 void scrieJudeteTxt(String filename, List<Judete> judete){
 
-    File myObj = new File(filename);
-
     try
     {
         FileWriter myWriter = new FileWriter(filename);
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine())
-        {
-            String data = myReader.nextLine();
-            myWriter.write(data + System.lineSeparator());
-        }
+
+        judete.forEach(j -> {
+            try {
+                myWriter.write(j.toString() + System.lineSeparator());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         myWriter.close();
     }
     catch (IOException e)
@@ -54,9 +55,18 @@ void scrieJudeteTxt(String filename, List<Judete> judete){
 }
 
 
+void scrieJudeteConsola(List<Judete> judete){
+
+    judete.forEach(j -> System.out.println(j.toString()));
+
+}
+
+
 void main(){
 
     List<Judete> judete = citesteJudete("src/main/java/judete.txt");
 
-    judete.stream().forEach(j -> System.out.println(j.toString()));
+    scrieJudeteTxt("src/main/java/output.txt", judete);
+
+    scrieJudeteConsola(judete);
 }
