@@ -2,21 +2,21 @@ public class Judete {
     public String ISO;
     public String nume;
     public String regiune;
-    public String nrLoc;
-    public String suprafata;
+    public long nrLoc;
+    public long suprafata;
 
-
-    public Judete(String nume, String ISO, String nrLoc, String regiune, String suprafata) {
-        this.nume = nume;
+    public Judete(String ISO, String nume, String regiune, long nrLoc, long suprafata) {
         this.ISO = ISO;
-        this.nrLoc = nrLoc;
+        this.nume = nume;
         this.regiune = regiune;
+        this.nrLoc = nrLoc;
         this.suprafata = suprafata;
     }
 
     @Override
     public String toString() {
-        return "ISO='" + ISO + '\'' +
+        return
+                "ISO='" + ISO + '\'' +
                 ", nume='" + nume + '\'' +
                 ", regiune='" + regiune + '\'' +
                 ", nrLoc=" + nrLoc +

@@ -9,16 +9,14 @@ List<Judete> citesteJudete(String filename){
     {
         while (myReader.hasNextLine())
         {
-            String citeste = myReader.nextLine();
-            String[] elem = citeste.split(" ");
 
-            String ISO = elem[0];
-            String nume = elem[1];
-            String regiune = elem[2];
-            String nrLoc = elem[3];
-            String suprafata = elem[4];
+            String ISO = myReader.next();
+            String nume = myReader.next();
+            String regiune = myReader.next();
+            long nrLoc = myReader.nextLong();
+            long suprafata = myReader.nextLong();
 
-            judete.add(new Judete(nume, ISO, nrLoc, regiune, suprafata));
+            judete.add(new Judete(ISO, nume, regiune, nrLoc, suprafata));
         }
     }
     catch (FileNotFoundException e) {
@@ -38,7 +36,7 @@ void scrieJudeteTxt(String filename, List<Judete> judete){
 
         judete.forEach(j -> {
             try {
-                myWriter.write(j.toString() + System.lineSeparator());
+                myWriter.write(j.toString() + System.lineSeparator() + System.lineSeparator());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -61,6 +59,17 @@ void scrieJudeteConsola(List<Judete> judete){
 
 }
 
+List<Judete> ordoneazaDensitatePopulatie(List<Judete> judete){
+
+    judete.forEach(j -> {
+        double densitate = (double) j.nrLoc / j.suprafata;
+
+    });
+
+    return judete.stream().map(j -> {
+        return (double) j.nrLoc / j.suprafata;
+    }).sorted();
+}
 
 void main(){
 
